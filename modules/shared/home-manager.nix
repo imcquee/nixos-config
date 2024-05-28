@@ -1,16 +1,10 @@
 { config, pkgs, lib, ... }:
 
-let name = "Dustin Lyons";
-    user = "dustin";
-    email = "dustin@dlyons.dev"; in
+let name = "%NAME%";
+    user = "%USER%";
+    email = "%EMAIL%"; in
 {
-
-  direnv = {
-      enable = true;
-      enableZshIntegration = true;
-      nix-direnv.enable = true;
-    };
-
+  # Shared shell configuration
   zsh = {
     enable = true;
     autocd = false;
@@ -33,48 +27,40 @@ let name = "Dustin Lyons";
         . /nix/var/nix/profiles/default/etc/profile.d/nix.sh
       fi
 
-      if [[ "$(uname)" == "Linux" ]]; then
-        alias pbcopy='xclip -selection clipboard'
-      fi
-
       # Define variables for directories
       export PATH=$HOME/.pnpm-packages/bin:$HOME/.pnpm-packages:$PATH
       export PATH=$HOME/.npm-packages/bin:$HOME/bin:$PATH
-      export PATH=$HOME/.composer/vendor/bin:$PATH
       export PATH=$HOME/.local/share/bin:$PATH
-
-      export PNPM_HOME=~/.pnpm-packages
-      alias pn=pnpm
-      alias px=pnpx
 
       # Remove history data we don't want to see
       export HISTIGNORE="pwd:ls:cd"
 
       # Ripgrep alias
-      alias search='rg -p --glob "!node_modules/*" --glob "!vendor/*" "$@"'
+      alias search=rg -p --glob '!node_modules/*'  $@
 
       # Emacs is my editor
       export ALTERNATE_EDITOR=""
       export EDITOR="emacsclient -t"
       export VISUAL="emacsclient -c -a emacs"
+
       e() {
           emacsclient -t "$@"
       }
 
-      # Laravel Artisan
-      alias art='php artisan'
+      # nix shortcuts
+      shell() {
+          nix-shell '<nixpkgs>' -A "$1"
+      }
 
-      # PHP Deployer
-      alias deploy='dep deploy'
+      # pnpm is a javascript package manager
+      alias pn=pnpm
+      alias px=pnpx
 
       # Use difftastic, syntax-aware diffing
       alias diff=difft
 
       # Always color ls and group directories
       alias ls='ls --color=auto'
-
-      # Reboot into my dual boot Windows partition
-      alias windows='systemctl reboot --boot-loader-entry=auto-windows'
     '';
   };
 
@@ -100,7 +86,7 @@ let name = "Dustin Lyons";
 
   vim = {
     enable = true;
-    plugins = with pkgs.vimPlugins; [ vim-airline vim-airline-themes copilot-vim vim-startify vim-tmux-navigator ];
+    plugins = with pkgs.vimPlugins; [ vim-airline vim-airline-themes vim-startify vim-tmux-navigator ];
     settings = { ignorecase = true; };
     extraConfig = ''
       "" General
@@ -234,6 +220,14 @@ let name = "Dustin Lyons";
         ];
       };
 
+      dynamic_padding = true;
+      decorations = "full";
+      title = "Terminal";
+      class = {
+        instance = "Alacritty";
+        general = "Alacritty";
+      };
+
       colors = {
         primary = {
           background = "0x1f2528";
@@ -309,7 +303,7 @@ let name = "Dustin Lyons";
         # Use XDG data directory
         # https://github.com/tmux-plugins/tmux-resurrect/issues/348
         extraConfig = ''
-          set -g @resurrect-dir '/Users/dustin/.cache/tmux/resurrect'
+          set -g @resurrect-dir '$HOME/.cache/tmux/resurrect'
           set -g @resurrect-capture-pane-contents 'on'
           set -g @resurrect-pane-contents-area 'visible'
         '';

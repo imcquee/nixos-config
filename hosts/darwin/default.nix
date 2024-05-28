@@ -1,6 +1,7 @@
 { agenix, config, pkgs, ... }:
 
-let user = "dustin"; in
+let user = "%USER%"; in
+
 {
 
   imports = [
@@ -50,7 +51,7 @@ let user = "dustin"; in
     ProgramArguments = [
       "/bin/sh"
       "-c"
-      "{ osascript -e 'display notification \"Attempting to start Emacs...\" with title \"Emacs Launch\"'; /bin/wait4path ${pkgs.emacs}/bin/emacs && { ${pkgs.emacs}/bin/emacs --fg-daemon; if [ $? -eq 0 ]; then osascript -e 'display notification \"Emacs has started.\" with title \"Emacs Launch\"'; else osascript -e 'display notification \"Failed to start Emacs.\" with title \"Emacs Launch\"' >&2; fi; } } &> /tmp/emacs_launch.log"
+      "/bin/wait4path ${pkgs.emacs}/bin/emacs && exec ${pkgs.emacs}/bin/emacs --fg-daemon"
     ];
     StandardErrorPath = "/tmp/emacs.err.log";
     StandardOutPath = "/tmp/emacs.out.log";
@@ -60,10 +61,6 @@ let user = "dustin"; in
     stateVersion = 4;
 
     defaults = {
-      LaunchServices = {
-        LSQuarantine = false;
-      };
-
       NSGlobalDomain = {
         AppleShowAllExtensions = true;
         ApplePressAndHoldEnabled = false;
@@ -83,7 +80,6 @@ let user = "dustin"; in
         autohide = false;
         show-recents = false;
         launchanim = true;
-        mouse-over-hilite-stack = true;
         orientation = "bottom";
         tilesize = 48;
       };
