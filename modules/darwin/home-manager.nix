@@ -20,7 +20,7 @@ in
 
   homebrew = {
     enable = true;
-    autoUpdate = true;
+    onActivation.upgrade = true;
     casks = pkgs.callPackage ./casks.nix {};
   };
 
