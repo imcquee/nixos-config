@@ -4,7 +4,6 @@ let
   user = "%USER%";
   # Define the content of your file as a derivation
   sharedFiles = import ../shared/files.nix { inherit config pkgs; };
-  additionalFiles = import ./files.nix { inherit user config pkgs; };
 in
 {
   imports = [
@@ -19,7 +18,10 @@ in
     shell = pkgs.zsh;
   };
 
-  homebrew.enable = true;
+  homebrew = {
+    enable = true;
+    casks = pkgs.callPackage ./casks.nix {};
+  };
 
   # Enable home-manager
   home-manager = {
@@ -32,7 +34,6 @@ in
           packages = pkgs.callPackage ./packages.nix {};
           file = lib.mkMerge [
             sharedFiles
-            additionalFiles
           ];
           stateVersion = "24.05";
         };

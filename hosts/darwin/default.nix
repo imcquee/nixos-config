@@ -51,6 +51,7 @@ let user = "%USER%"; in
       NSGlobalDomain = {
         AppleShowAllExtensions = true;
       };
+    };
 
     keyboard = {
       enableKeyMapping = true;

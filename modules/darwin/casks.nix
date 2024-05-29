@@ -1,0 +1,6 @@
+_:
+
+[
+  # Browsers
+  "google-chrome"
+]
