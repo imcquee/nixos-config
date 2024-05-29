@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
 
-let name = "%NAME%";
-    user = "%USER%";
-    email = "%EMAIL%"; in
+let name = "Isaac McQueen";
+    user = "imcquee";
+    email = "imcqueen@truehomesusa.com"; in
 {
   git = {
     enable = true;
