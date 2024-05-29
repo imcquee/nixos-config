@@ -51,8 +51,13 @@ let user = "imcquee"; in
       NSGlobalDomain = {
         AppleShowAllExtensions = true;
       };
+      dock = {
+        tilesize = 56;
+        orientation = "left";
+      };
     };
 
+    
     keyboard = {
       enableKeyMapping = true;
       remapCapsLockToEscape = true;

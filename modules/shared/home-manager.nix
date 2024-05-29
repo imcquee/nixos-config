@@ -4,6 +4,12 @@ let name = "Isaac McQueen";
     user = "imcquee";
     email = "imcqueen@truehomesusa.com"; in
 {
+
+  direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+  };
   git = {
     enable = true;
     ignores = [ "*.swp" ];
