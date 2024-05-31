@@ -99,6 +99,7 @@
               };
             }
             ./hosts/darwin
+	    ./path
           ];
         }
       );

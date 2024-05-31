@@ -9,7 +9,6 @@ let user = "imcquee"; in
     ../../modules/darwin/home-manager.nix
     ../../modules/shared
     ../../modules/shared/cachix
-    ../../modules/shared/path
      agenix.darwinModules.default
   ];
 
