@@ -7,4 +7,5 @@ with pkgs; [
   gnupg
   tmux
   lazygit
+  yazi
 ]
