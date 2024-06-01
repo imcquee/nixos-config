@@ -97,8 +97,10 @@
                 mutableTaps = false;
                 autoMigrate = true;
               };
+	      nix.registry.nixpkgs.flake = nixpkgs;
+              environment.etc."nix/inputs/nixpkgs".source = "${nixpkgs}";
+	      nix.settings.nix-path = nixpkgs.lib.mkForce "nixpkgs=/etc/nix/inputs/nixpkgs";
             }
-	    ./path
             ./hosts/darwin
           ];
         }
