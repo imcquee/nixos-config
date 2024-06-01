@@ -98,6 +98,7 @@
                 autoMigrate = true;
               };
             }
+	    ./path
             ./hosts/darwin
           ];
         }
