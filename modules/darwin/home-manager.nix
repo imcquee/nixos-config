@@ -20,7 +20,10 @@ in
 
   homebrew = {
     enable = true;
-    onActivation.upgrade = true;
+    onActivation = {
+      upgrade = true;
+      cleanup = "uninstall";
+    };
     casks = pkgs.callPackage ./casks.nix {};
   };
 
