@@ -97,6 +97,7 @@
                 mutableTaps = false;
                 autoMigrate = true;
               };
+	      # Use flake for nix_path https://nixos-and-flakes.thiscute.world/best-practices/nix-path-and-flake-registry
 	      nix.registry.nixpkgs.flake = nixpkgs;
               environment.etc."nix/inputs/nixpkgs".source = "${nixpkgs}";
 	      nix.settings.nix-path = nixpkgs.lib.mkForce "nixpkgs=/etc/nix/inputs/nixpkgs";

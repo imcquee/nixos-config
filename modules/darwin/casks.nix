@@ -11,6 +11,9 @@ _:
   "raycast"
   "obsidian"
 
+  # VM
+  "utm"
+
   # Work
   "teamviewer"
   "microsoft-teams"

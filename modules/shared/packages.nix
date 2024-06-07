@@ -11,4 +11,6 @@ with pkgs; [
   lazygit
   qemu
   yazi
+  cargo
+  rustc
 ]
