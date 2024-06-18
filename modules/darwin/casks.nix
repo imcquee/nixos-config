@@ -10,6 +10,7 @@ _:
   # Productivity
   "raycast"
   "obsidian"
+  "devtoys"
 
   # VM
   "utm"
@@ -17,4 +18,5 @@ _:
   # Work
   "teamviewer"
   "microsoft-teams"
+  "zoom"
 ]
