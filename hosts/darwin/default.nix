@@ -52,6 +52,7 @@ let user = "imcquee"; in
         AppleShowAllExtensions = true;
       };
       dock = {
+        autohide = false;
         tilesize = 56;
         orientation = "left";
       };
